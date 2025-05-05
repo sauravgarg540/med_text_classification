@@ -1,0 +1,36 @@
+PROJECT:
+  RUN_NAME: "Phi3"
+  SEED: 42
+  TRAIN: True
+
+MODEL:
+  NAME: "microsoft/Phi-3-mini-4k-instruct"
+
+TRAINING:
+  LEARNING_RATE: 5e-5
+  SAVE_STRATEGY: "steps"
+  LOGGING_STRATEGY: "steps"
+  SAVE_STEPS: 25
+  BATCH_SIZE: 12
+  NUM_EPOCHS: 2
+  WARMUP_STEPS: 20
+  GRADIENT_ACCUMULATION_STEPS: 92 # Effective batch size = batch_size * grad_accum * num_gpus
+  SAVE_TOTAL_LIMIT: 1
+  OPTIM: "paged_adamw_32bit"
+
+LORA:
+  R: 16
+  ALPHA: 32
+  DROPOUT: 0.05
+  TASK_TYPE: "CAUSAL_LM"
+  TARGET_MODULES: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+
+DATA:
+  MAX_LENGTH: 512
+  REQUIRED_COLUMNS: ["text", "label"]
+
+WANDB:
+  TAGS:
+    - "microsoft/Phi-3-mini-4k-instruct"
+    - "experiment1"
+  NOTES: "Experiment with phi3 and adjusted hyperparameters"
