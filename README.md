@@ -58,3 +58,9 @@ The finetuning process shows significant improvements across all metrics, with t
 - Redis server
 - Docker (optional)
 
+### TODO:
+- [ ] Add a front-end with consumer to the Redis stream
+- [ ] Create a docker-compose file
+- [ ] Write in Readme.MD about the project setup
+- [ ] Write in Readme.MD  regrading how to run the project
+
